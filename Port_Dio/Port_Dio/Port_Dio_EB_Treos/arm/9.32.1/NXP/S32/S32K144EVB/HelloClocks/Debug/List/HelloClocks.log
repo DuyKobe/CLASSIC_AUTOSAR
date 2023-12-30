@@ -1,0 +1,10 @@
+
+Creating copy init batch C1 (Table) for P1 -> P3, auto, unit
+  First match: .mcal_data (Port.o #8)
+Selecting packing algorithm for 'auto' batches
+  Estimating size for copy init batch C1 (P1 -> P3):
+      copy: 76 bytes
+      packbits [single range]: 2 bytes
+      lz77 [single range]: 4 bytes
+    Selecting packbits [single range]
+Creating initializer unit for P1 -> P3

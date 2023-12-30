@@ -1,0 +1,474 @@
+###############################################################################
+#
+# IAR ELF Linker V9.32.1.338/W64 for ARM                  16/Apr/2023  21:02:24
+# Copyright 2007-2022 IAR Systems AB.
+#
+#    Output file  =
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Exe\HelloClocks.out
+#    Map file     =
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\List\HelloClocks.map
+#    Command line =
+#        -f
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Exe\HelloClocks.out.rsp
+#        (C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application\clocks_and_modes.o
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application\EB_Generate\Det.o
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application\EB_Generate\Dio.o
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application\EB_Generate\Dio_Cfg.o
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application\EB_Generate\Dio_Gpio.o
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application\main.o
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application\EB_Generate\Port.o
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application\EB_Generate\Port_Cfg.o
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application\EB_Generate\Port_Ipw.o
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application\EB_Generate\Port_PBcfg.o
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application\EB_Generate\Port_Port_Ci.o
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application\EB_Generate\SchM_Dio.o
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application\EB_Generate\SchM_Port.o
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Startup\startup_S32K144.o
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Startup\system_S32K144.o
+#        --no_out_extension -o
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Exe\HelloClocks.out
+#        --map
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\List\HelloClocks.map
+#        --log initialization --log_file
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\List\HelloClocks.log
+#        --config
+#        C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks/../config/S32K144_ram.icf
+#        --semihosting --entry __iar_program_start --redirect
+#        __iar_sh_stdout=__iar_sh_stdout_swo --vfe --text_out locale
+#        --cpu=Cortex-M4 --fpu=VFPv4_sp)
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__CPP_Runtime   = 1
+__SystemLibrary = DLib
+__dlib_version  = 6
+
+
+*******************************************************************************
+*** HEAP SELECTION
+***
+
+The basic heap was selected because --advanced_heap
+was not specified and the application did not appear to
+be primarily optimized for speed.
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A0":  place at address 0x1fff'8000 { ro section .intvec };
+"P1":  place in [from 0x1fff'8000 to 0x1fff'ffff] { ro };
+define block CSTACK with size = 2K, alignment = 8 { };
+define block HEAP with size = 4K, alignment = 8 { };
+"P3":  place in [from 0x2000'0000 to 0x2000'6fff] {
+          rw, block CSTACK, block HEAP };
+initialize by copy { rw };
+
+No sections matched the following patterns:
+
+  ro section application_specific_ro  in "P2"
+  rw section application_specific_rw  in "P4"
+
+
+  Section            Kind         Address   Size  Object
+  -------            ----         -------   ----  ------
+"A0":                                      0x400
+  .intvec            ro code  0x1fff'8000  0x400  startup_S32K144.o [3]
+                            - 0x1fff'8400  0x400
+
+"P1":                                      0x946
+  .mcal_text         ro code  0x1fff'8400  0x358  Port_Port_Ci.o [2]
+  .text              ro code  0x1fff'8758  0x180  main.o [1]
+  .text              ro code  0x1fff'88d8   0xa0  clocks_and_modes.o [1]
+  .mcal_text         ro code  0x1fff'8978   0x28  Port.o [2]
+  .mcal_text         ro code  0x1fff'89a0   0x1a  Dio.o [2]
+  .text              ro code  0x1fff'89ba   0x3a  packbits_init_single.o [6]
+  .text              ro code  0x1fff'89f4   0x8c  Det.o [2]
+  .mcal_text         ro code  0x1fff'8a80   0x6c  Dio_Gpio.o [2]
+  .mcal_const_cfg    const    0x1fff'8aec   0xa0  Port_PBcfg.o [2]
+  .text              ro code  0x1fff'8b8c   0x54  system_S32K144.o [3]
+  .mcal_const_cfg    const    0x1fff'8be0   0x50  Port_PBcfg.o [2]
+  .text              ro code  0x1fff'8c30   0x28  data_init.o [6]
+  .text              ro code  0x1fff'8c58   0x22  fpinit_M.o [5]
+  .iar.init_table    const    0x1fff'8c7c   0x10  - Linker created -
+  .text              ro code  0x1fff'8c8c    0x2  startup_S32K144.o [3]
+  .text              ro code  0x1fff'8c90   0x1e  cmain.o [6]
+  .text              ro code  0x1fff'8cae    0x4  low_level_init.o [4]
+  .text              ro code  0x1fff'8cb2    0x4  exit.o [4]
+  .text              ro code  0x1fff'8cb6    0x2  startup_S32K144.o [3]
+  .text              ro code  0x1fff'8cb8    0xa  cexit.o [6]
+  .text              ro code  0x1fff'8cc2    0x2  startup_S32K144.o [3]
+  .text              ro code  0x1fff'8cc4   0x14  exit.o [7]
+  .text              ro code  0x1fff'8cd8   0x1c  cstartup_M.o [6]
+  .mcal_const_cfg    const    0x1fff'8cf4   0x18  Port_PBcfg.o [2]
+  .text              ro code  0x1fff'8d0c   0x10  startup_S32K144.o [3]
+  FlashConfig        ro code  0x1fff'8d1c   0x10  startup_S32K144.o [3]
+  .mcal_const_cfg    const    0x1fff'8d2c    0x8  Port_PBcfg.o [2]
+  .text              ro code  0x1fff'8d34    0x4  startup_S32K144.o [3]
+  .text              ro code  0x1fff'8d38    0x2  startup_S32K144.o [3]
+  .text              ro code  0x1fff'8d3a    0x2  startup_S32K144.o [3]
+  .text              ro code  0x1fff'8d3c    0x2  startup_S32K144.o [3]
+  .text              ro code  0x1fff'8d3e    0x2  startup_S32K144.o [3]
+  .text              ro code  0x1fff'8d40    0x2  startup_S32K144.o [3]
+  .text              ro code  0x1fff'8d42    0x2  startup_S32K144.o [3]
+  .rodata            const    0x1fff'8d44    0x0  packbits_init_single.o [6]
+  Initializer bytes  const    0x1fff'8d44    0x2  <for P3-1>
+                            - 0x1fff'8d46  0x946
+
+"P3", part 1 of 2:                          0x4b
+  P3-1                        0x2000'0000   0x4b  <Init block>
+    .mcal_data       inited   0x2000'0000    0x4  Port.o [2]
+    .bss             inited   0x2000'0004    0x8  Det.o [2]
+    .bss             inited   0x2000'000c    0x8  Det.o [2]
+    .bss             inited   0x2000'0014    0x8  Det.o [2]
+    .bss             inited   0x2000'001c   0x10  Det.o [2]
+    .bss             inited   0x2000'002c    0x4  Det.o [2]
+    .bss             inited   0x2000'0030    0x4  main.o [1]
+    .mcal_bss        inited   0x2000'0034   0x14  Port_Port_Ci.o [2]
+    .bss             inited   0x2000'0048    0x1  Det.o [2]
+    .bss             inited   0x2000'0049    0x1  main.o [1]
+    .bss             inited   0x2000'004a    0x1  main.o [1]
+                            - 0x2000'004b   0x4b
+
+"P3", part 2 of 2:                         0x800
+  CSTACK                      0x2000'0050  0x800  <Block>
+    CSTACK           uninit   0x2000'0050  0x800  <Block tail>
+                            - 0x2000'0850  0x800
+
+Unused ranges:
+
+         From           To    Size
+         ----           --    ----
+  0x1fff'8d46  0x1fff'ffff  0x72ba
+  0x2000'004b  0x2000'004f     0x5
+  0x2000'0850  0x2000'6fff  0x67b0
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address      Size
+          -------      ----
+Copy/packbits (__iar_packbits_init_single3)
+    1 source range, total size 0x2 (2% of destination):
+          0x1fff'8d44   0x2
+    1 destination range, total size 0x4b:
+          0x2000'0000  0x4b
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                  ro code  ro data  rw data
+    ------                  -------  -------  -------
+command line/config:
+    -------------------------------------------------
+    Total:
+
+C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application: [1]
+    clocks_and_modes.o          160
+    main.o                      384        1        6
+    -------------------------------------------------
+    Total:                      544        1        6
+
+C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application\EB_Generate: [2]
+    Det.o                       140        1       45
+    Dio.o                        26
+    Dio_Gpio.o                  108
+    Port.o                       40                 4
+    Port_PBcfg.o                         272
+    Port_Port_Ci.o              856                20
+    -------------------------------------------------
+    Total:                    1'170      273       69
+
+C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Startup: [3]
+    startup_S32K144.o         1'078
+    system_S32K144.o             84
+    -------------------------------------------------
+    Total:                    1'162
+
+dl7M_tln.a: [4]
+    exit.o                        4
+    low_level_init.o              4
+    -------------------------------------------------
+    Total:                        8
+
+m7M_tls.a: [5]
+    fpinit_M.o                   34
+    -------------------------------------------------
+    Total:                       34
+
+rt7M_tl.a: [6]
+    cexit.o                      10
+    cmain.o                      30
+    cstartup_M.o                 28
+    data_init.o                  40
+    packbits_init_single.o       58
+    -------------------------------------------------
+    Total:                      166
+
+shb_l.a: [7]
+    exit.o                       20
+    -------------------------------------------------
+    Total:                       20
+
+    Gaps                          2        2
+    Linker created                        16    2'048
+-----------------------------------------------------
+    Grand Total:              3'106      292    2'123
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                       Address   Size  Type      Object
+-----                       -------   ----  ----      ------
+.iar.init_table$$Base   0x1fff'8c7c          --   Gb  - Linker created -
+.iar.init_table$$Limit  0x1fff'8c8c          --   Gb  - Linker created -
+?main                   0x1fff'8c91         Code  Gb  cmain.o [6]
+ADC0_IRQHandler         0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+ADC1_IRQHandler         0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+BusFault_Handler        0x1fff'8d39         Code  Wk  startup_S32K144.o [3]
+CAN0_Error_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+CAN0_ORed_0_15_MB_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+CAN0_ORed_16_31_MB_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+CAN0_ORed_IRQHandler    0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+CAN0_Wake_Up_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+CAN1_Error_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+CAN1_ORed_0_15_MB_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+CAN1_ORed_IRQHandler    0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+CAN2_Error_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+CAN2_ORed_0_15_MB_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+CAN2_ORed_IRQHandler    0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+CMP0_IRQHandler         0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+CSTACK$$Base            0x2000'0050          --   Gb  - Linker created -
+CSTACK$$Limit           0x2000'0850          --   Gb  - Linker created -
+DMA0_IRQHandler         0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DMA10_IRQHandler        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DMA11_IRQHandler        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DMA12_IRQHandler        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DMA13_IRQHandler        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DMA14_IRQHandler        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DMA15_IRQHandler        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DMA1_IRQHandler         0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DMA2_IRQHandler         0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DMA3_IRQHandler         0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DMA4_IRQHandler         0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DMA5_IRQHandler         0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DMA6_IRQHandler         0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DMA7_IRQHandler         0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DMA8_IRQHandler         0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DMA9_IRQHandler         0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DMA_Error_IRQHandler    0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+DebugMon_Handler        0x1fff'8d3f         Code  Wk  startup_S32K144.o [3]
+DefaultISR              0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Det_ApiId               0x2000'000c    0x8  Data  Gb  Det.o [2]
+Det_ErrorId             0x2000'0014    0x8  Data  Gb  Det.o [2]
+Det_InstanceId          0x2000'0004    0x8  Data  Gb  Det.o [2]
+Det_ModuleId            0x2000'001c   0x10  Data  Gb  Det.o [2]
+Det_OverflowEvent       0x2000'0048    0x1  Data  Gb  Det.o [2]
+Det_ReportError         0x1fff'89f5   0x72  Code  Gb  Det.o [2]
+Det_numEventErrors      0x2000'002c    0x4  Data  Gb  Det.o [2]
+Dio_Gpio_ReadChannel    0x1fff'8a81   0x26  Code  Gb  Dio_Gpio.o [2]
+Dio_Gpio_WriteChannel   0x1fff'8aa7   0x3a  Code  Gb  Dio_Gpio.o [2]
+Dio_ReadChannel         0x1fff'89a1    0xe  Code  Gb  Dio.o [2]
+Dio_WriteChannel        0x1fff'89af    0xc  Code  Gb  Dio.o [2]
+ERM_double_fault_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+ERM_single_fault_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FLEXIO_IRQHandler       0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTFC_Fault_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTFC_IRQHandler         0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM0_Ch0_Ch1_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM0_Ch2_Ch3_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM0_Ch4_Ch5_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM0_Ch6_Ch7_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM0_Fault_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM0_Ovf_Reload_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM1_Ch0_Ch1_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM1_Ch2_Ch3_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM1_Ch4_Ch5_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM1_Ch6_Ch7_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM1_Fault_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM1_Ovf_Reload_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM2_Ch0_Ch1_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM2_Ch2_Ch3_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM2_Ch4_Ch5_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM2_Ch6_Ch7_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM2_Fault_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM2_Ovf_Reload_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM3_Ch0_Ch1_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM3_Ch2_Ch3_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM3_Ch4_Ch5_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM3_Ch6_Ch7_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM3_Fault_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+FTM3_Ovf_Reload_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+HardFault_Handler       0x1fff'8cb7         Code  Wk  startup_S32K144.o [3]
+Init_clock              0x1fff'8827   0x1a  Code  Gb  main.o [1]
+LPI2C0_Master_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+LPI2C0_Slave_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+LPIT0_Ch0_IRQHandler    0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+LPIT0_Ch1_IRQHandler    0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+LPIT0_Ch2_IRQHandler    0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+LPIT0_Ch3_IRQHandler    0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+LPIT0_Duration          0x1fff'8869   0x32  Code  Gb  main.o [1]
+LPIT0_init              0x1fff'8759   0x2c  Code  Gb  main.o [1]
+LPSPI0_IRQHandler       0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+LPSPI1_IRQHandler       0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+LPSPI2_IRQHandler       0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+LPTMR0_IRQHandler       0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+LPUART0_RxTx_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+LPUART1_RxTx_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+LPUART2_RxTx_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+LVD_LVW_IRQHandler      0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+LedOldStatus            0x2000'0049    0x1  Data  Gb  main.o [1]
+LedOnOff                0x1fff'8841   0x28  Code  Gb  main.o [1]
+LedStatus               0x2000'0030    0x4  Data  Gb  main.o [1]
+MCM_IRQHandler          0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+MemManage_Handler       0x1fff'8cc3         Code  Wk  startup_S32K144.o [3]
+NMI_Handler             0x1fff'8c8d         Code  Wk  startup_S32K144.o [3]
+NormalRUNmode_80MHz     0x1fff'8935   0x1c  Code  Gb  clocks_and_modes.o [1]
+PDB0_IRQHandler         0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+PDB1_IRQHandler         0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+PORTA_IRQHandler        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+PORTB_IRQHandler        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+PORTC_IRQHandler        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+PORTD_IRQHandler        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+PORTE_IRQHandler        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+PendSV_Handler          0x1fff'8d41         Code  Wk  startup_S32K144.o [3]
+Port_Config             0x1fff'8cf4   0x18  Data  Gb  Port_PBcfg.o [2]
+Port_Init               0x1fff'8979   0x22  Code  Gb  Port.o [2]
+Port_Port_Ci_Init       0x1fff'86a5   0x92  Code  Gb  Port_Port_Ci.o [2]
+Port_Port_Ci_Init_ConfiguredPins
+                        0x1fff'8545  0x160  Code  Lc  Port_Port_Ci.o [2]
+Port_Port_Ci_Init_UnusedPins
+                        0x1fff'8401  0x144  Code  Lc  Port_Port_Ci.o [2]
+Port_Port_Ci_au16GpioDirChangeability
+                        0x2000'0034   0x14  Data  Lc  Port_Port_Ci.o [2]
+Port_UnUsedPin          0x1fff'8d2c    0x8  Data  Lc  Port_PBcfg.o [2]
+Port_aPinConfigDefault  0x1fff'8be0   0x50  Data  Lc  Port_PBcfg.o [2]
+Port_au16NoUnUsedPadsArrayDefault
+                        0x1fff'8aec   0xa0  Data  Lc  Port_PBcfg.o [2]
+Port_pConfig            0x2000'0000    0x4  Data  Gb  Port.o [2]
+PressBTN1               0x2000'004a    0x1  Data  Gb  main.o [1]
+RCM_IRQHandler          0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+RTC_IRQHandler          0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+RTC_Seconds_IRQHandler  0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Read_Collision_IRQHandler
+                        0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Region$$Table$$Base     0x1fff'8c7c          --   Gb  - Linker created -
+Region$$Table$$Limit    0x1fff'8c8c          --   Gb  - Linker created -
+Reserved100_IRQHandler  0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved103_IRQHandler  0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved105_IRQHandler  0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved106_IRQHandler  0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved107_IRQHandler  0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved110_IRQHandler  0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved112_IRQHandler  0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved113_IRQHandler  0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved114_IRQHandler  0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved45_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved46_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved48_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved50_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved52_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved53_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved54_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved58_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved59_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved69_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved70_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved71_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved72_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved81_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved82_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved83_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved86_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved87_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved88_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved89_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved90_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved91_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved92_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved93_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reserved99_IRQHandler   0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+Reset_Handler           0x1fff'8d0d         Code  Wk  startup_S32K144.o [3]
+SCG_IRQHandler          0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+SOSC_init_8MHz          0x1fff'88d9   0x22  Code  Gb  clocks_and_modes.o [1]
+SPLL_init_160MHz        0x1fff'88fb   0x3a  Code  Gb  clocks_and_modes.o [1]
+SVC_Handler             0x1fff'8d3d         Code  Wk  startup_S32K144.o [3]
+SWI_IRQHandler          0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+SysTick_Handler         0x1fff'8d43         Code  Wk  startup_S32K144.o [3]
+SystemInit              0x1fff'8b8d   0x34  Code  Gb  system_S32K144.o [3]
+UsageFault_Handler      0x1fff'8d3b         Code  Wk  startup_S32K144.o [3]
+WDOG_EWM_IRQHandler     0x1fff'8d35         Code  Wk  startup_S32K144.o [3]
+__cmain                 0x1fff'8c91         Code  Gb  cmain.o [6]
+__exit                  0x1fff'8cc5   0x14  Code  Gb  exit.o [7]
+__iar_data_init3        0x1fff'8c31   0x28  Code  Gb  data_init.o [6]
+__iar_init_vfp          0x1fff'8c59         Code  Gb  fpinit_M.o [5]
+__iar_packbits_init_single3
+                        0x1fff'89bb   0x3a  Code  Gb  packbits_init_single.o [6]
+__iar_program_start     0x1fff'8cd9         Code  Gb  cstartup_M.o [6]
+__low_level_init        0x1fff'8caf    0x4  Code  Gb  low_level_init.o [4]
+__vector_table          0x1fff'8000         Data  Gb  startup_S32K144.o [3]
+_call_main              0x1fff'8c9d         Code  Gb  cmain.o [6]
+_exit                   0x1fff'8cb9         Code  Gb  cexit.o [6]
+exit                    0x1fff'8cb3    0x4  Code  Gb  exit.o [4]
+main                    0x1fff'8785   0xa2  Code  Gb  main.o [1]
+
+
+[1] = C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application
+[2] = C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Application\EB_Generate
+[3] = C:\Users\Admin\Desktop\RGB_EB_Treos\arm\9.32.1\NXP\S32\S32K144EVB\HelloClocks\Debug\Obj\Startup
+[4] = dl7M_tln.a
+[5] = m7M_tls.a
+[6] = rt7M_tl.a
+[7] = shb_l.a
+
+  3'106 bytes of readonly  code memory
+    292 bytes of readonly  data memory
+  2'123 bytes of readwrite data memory
+
+Errors: none
+Warnings: none

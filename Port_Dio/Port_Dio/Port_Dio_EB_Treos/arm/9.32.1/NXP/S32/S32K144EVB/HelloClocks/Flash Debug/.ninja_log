@@ -1,0 +1,6 @@
+# ninja log v5
+1	178	7029882024433293	C:/Users/AnhLB5/Desktop/SK32/Exemple/RGB_EB/arm/9.32.1/NXP/S32/S32K144EVB/HelloClocks/Debug/Obj/Startup/startup_S32K144.o	c7897801085410d9
+27	578	7029882027413291	C:/Users/AnhLB5/Desktop/SK32/Exemple/RGB_EB/arm/9.32.1/NXP/S32/S32K144EVB/HelloClocks/Debug/Obj/Startup/system_S32K144.o	358212ee97dcad38
+181	672	7029882028013324	C:/Users/AnhLB5/Desktop/SK32/Exemple/RGB_EB/arm/9.32.1/NXP/S32/S32K144EVB/HelloClocks/Debug/Obj/Application/main.o	457cb4fe0372ddee
+584	955	7029882031893259	C:/Users/AnhLB5/Desktop/SK32/Exemple/RGB_EB/arm/9.32.1/NXP/S32/S32K144EVB/HelloClocks/Debug/Obj/Application/clocks_and_modes.o	3b5e468aa8825434
+961	1110	7029882033683195	C:/Users/AnhLB5/Desktop/SK32/Exemple/RGB_EB/arm/9.32.1/NXP/S32/S32K144EVB/HelloClocks/Debug/Exe/HelloClocks.out	3e1ed5a59fa9977a

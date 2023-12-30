@@ -1,0 +1,19 @@
+"--endian=little" 
+
+"--cpu=Cortex-M4" 
+
+"--fpu=VFPv4_SP" 
+
+"-p" 
+
+"C:\Program Files\IAR Systems\Embedded Workbench 9.1\arm\CONFIG\debugger\NXP\S32K144.ddf" 
+
+"--drv_verify_download" 
+
+"--semihosting" 
+
+"--device=S32K144" 
+
+
+
+

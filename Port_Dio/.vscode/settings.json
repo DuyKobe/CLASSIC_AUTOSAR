@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "dio.h": "c",
+        "port.h": "c",
+        "port_cfg.h": "c",
+        "port_memmap.h": "c"
+    }
+}

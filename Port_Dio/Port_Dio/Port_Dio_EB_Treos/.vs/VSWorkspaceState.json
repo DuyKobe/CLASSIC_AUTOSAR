@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\arm",
+    "\\arm\\9.32.1",
+    "\\arm\\9.32.1\\NXP",
+    "\\arm\\9.32.1\\NXP\\S32",
+    "\\arm\\9.32.1\\NXP\\S32\\S32K144EVB",
+    "\\arm\\9.32.1\\NXP\\S32\\S32K144EVB\\HelloClocks",
+    "\\arm\\9.32.1\\NXP\\S32\\S32K144EVB\\HelloClocks\\Application",
+    "\\arm\\9.32.1\\NXP\\S32\\S32K144EVB\\Plug-in",
+    "\\arm\\9.32.1\\NXP\\S32\\S32K144EVB\\Plug-in\\Port_TS_T40D2M10I5R0",
+    "\\arm\\9.32.1\\NXP\\S32\\S32K144EVB\\Plug-in\\Port_TS_T40D2M10I5R0\\src"
+  ],
+  "SelectedNode": "\\arm\\9.32.1\\NXP\\S32\\S32K144EVB\\Plug-in\\Port_TS_T40D2M10I5R0\\src\\Port.c",
+  "PreviewInSolutionExplorer": false
+}
