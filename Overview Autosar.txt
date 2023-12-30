@@ -1,0 +1,95 @@
+AUTOSAR là viết tắt của "AUTomotive Open System ARchitecture,"   tạo ra một tiêu chuẩn kiến trúc phần mềm tiêu chuẩn và mở rộng cho các hệ thống điều khiển trong ô tô.
+Nhờ autosar ta có thể tái sử dụng code vào các loại chip khác nhau mà ko cần quan tâm đến chi tiết cụ thể phần cứng 
+1. Trình bày kiến trúc autosar
++ Autosar gồ 3 layer : Application, RTE, BSW
++ lớp Application độc lập với phần cứng
+  - Application software layer (ASW) là tầng cao nhất trong kiến trúc AUTOSAR. Nó chứa các thành phần phần mềm ứng dụng (application software components) cung cấp chức năng cho hệ thống ô tô.
+  - ví dụ: điều khiển động cơ, điều hòa không khí, và hệ thống thông tin giải trí.
++ Lớp BSW có 3 layer chính : Service, ECU As, Mic Ab và complex device driver 
+  - Service: cung cấp các đơn vị cơ bản chức năng có 3 khối chính hệ điều hành OS, communication (Diagnostic Communication manager(com-stack ), memory
+  - ECU Abstraction Layer: ECU Abstraction Layer (ECUAL) là một lớp trừu tượng làm độc lâp lớp phần mềm và phần cứng ecu, giao dien trung gian lớp cao hơn với MACL. CUng cấp các API bao gồm các hàm: 
+   Truy cập các tài nguyên phần cứng, chẳng hạn như bộ nhớ, I/O và timer.
+   Giao tiếp với các ngoại vi, chẳng hạn như cảm biến, bộ truyền động và bộ giao tiếp.
+   Quản lý các tài nguyên, chẳng hạn như bộ nhớ, I/O và timer.
+  - mcal: tầng thấp nhất của BSW chứa các internal driver nôi vi để các module sw truy câp trực tiếp đến vdk và ngoại vi
+  - CDD:  một lớp phần mềm nằm giữa phần cứng và Môi trường Chạy thời gian (RTE) trong kiến trúc AUTOSAR. Nó cho phép tích hợp các trình điều khiển cho các thiết bị đặc biệt, chẳng hạn như:
+Các thiết bị không được quy định trong các thông số kỹ thuật AUTOSAR tiêu chuẩn
+Các thiết bị có các ràng buộc thời gian rất nghiêm ngặt
+Các thiết bị cần được tích hợp trong quá trình di chuyển từ các hệ thống cũ
+-> TRUY CÂP phần cứng nhanh hơn 
+ví dụ : điều khiển bugi kim phun 
++ RTE: RTE là lớp cung cấp dịch vụ liên lạc cho ASW (AUTOSAR Software Components and/or AUTOSAR Sensor/Actuator components)
+Làm cho các SWC AUTOSAR độc lập với việc mapping tới một ECU cụ thể.
+
+2. Em trình bày phần e quan tâm nhất về autosar 
+_ MCAL: gồm các driver như MCD, Memory driver, Memory Driver, Communication Driver, Wireless Communication Driver, I/O Driver, Crypto Driver
+ + MCD: driver ngoại vi watch dog Timer, hàm truy cập trực tiếp đến vdk.
+ + Memory Driver: các driver cho on chip memory (flash memory, eepprom) và external ram 
+ + I/O driver: cho analog và digital (Port Driver, DIO driver, PWM, ADC)
+ + Wireless CM: 
+ + CM: ECU onboard (SPI), CM trên xe (CAN), LIN, Flexray, Ethernet)
+3. Trình bày ứng dụng tầng application software layer 
+  + Điều khiển động cơ
+  + Hệ thống giải trí 
+  + Điều hòa không khí 
+  + nhiu ứng dụng khác trên ô tô 
+4. autosar interface?
+- Có 3 loại Autosar interface: 
+ + Autosar Interface: giữa các ASWs hoắc CDD
+ + Standardized autosar interface : giữa ASW và BSW
+ + Standardized interface : giưacs các BSW module hay RTE /os/bsw
+- Để giao tiếp ta dùng các mode giao tiếp port interface
+ + Provider Port 
+ + Reciever Port 
+ + Provider-Reciever Port 
+- 6 loại Port interface 
+ + Sender Receiver interface: gửi nhận data giữa các SWC. là một giao tiếp không đồng bộ
+ + Client Server Interface: sử dụng để call function. Server có P-Port, Client có R-Port
+    - Synchronous call (Client waits until server function runs and completes.
+    - Asynchronous call (Client triggers server function and just function and just proceeds, Server results are later fetch when needed)
+Cuộc gọi đồng bộ (Synchronous call):
+Client gửi yêu cầu gọi hàm đến server và chờ server thực thi hàm xong mới tiếp tục xử lý.
+Client bị chặn (block) trong thời gian chờ server thực thi hàm.
+Thích hợp cho các trường hợp cần kết quả ngay lập tức và client không thể tiếp tục xử lý nếu không có kết quả từ server.
+Cuộc gọi không đồng bộ (Asynchronous call):
+Client gửi yêu cầu gọi hàm đến server và tiếp tục xử lý mà không cần chờ server thực thi xong.
+Client không bị chặn, có thể tiếp tục thực hiện các công việc khác.
+Client có thể lấy kết quả từ server sau đó nếu cần.
+Thích hợp cho các trường hợp client không cần kết quả ngay lập tức hoặc có thể xử lý các công việc khác trong thời gian chờ server.
+
+4. Trình bày cách kết nối 2 cảm biến
+
+
+3. Tại sao điều khiển kim phun thông qua complex driver?
+ - truy cập hardware nhanh hơn, kết nối từ RTE đến hardware không cần thông qua basic software layer 
+- 
+Điều khiển kim phun thông qua complex device driver là cần thiết vì kim phun là một thiết bị ngoại vi phức tạp. Nó cần được điều khiển theo các quy trình cụ thể để cung cấp nhiên liệu cho động cơ một cách chính xác.
+
+Complex device driver cung cấp các chức năng sau để điều khiển kim phun:
+
+Thiết lập các thông số của kim phun: Complex device driver cho phép ứng dụng điều khiển các thông số của kim phun, chẳng hạn như thời gian phun, áp suất phun, và góc phun.
+Kiểm soát hoạt động của kim phun: Complex device driver cho phép ứng dụng bật hoặc tắt kim phun, và điều chỉnh lượng nhiên liệu phun.
+Quản lý lỗi: Complex device driver phát hiện và báo cáo các lỗi xảy ra với kim phun.
+4. Autosar schema là gì ?
+Autosar schema là một tập hợp các mô hình, quy trình và công cụ để hỗ trợ việc phát triển phần mềm ô tô theo kiến trúc Autosar. Kiến trúc Autosar là một kiến trúc phần mềm ô tô mở, được phát triển bởi các nhà sản xuất ô tô và các nhà cung cấp ô tô.
+Autosar schema được chia thành bốn miền chính: 
+ + Miền chức năng (Functional Domain): Cung cấp các dịch vụ chức năng cho các ứng dụng ô tô, chẳng hạn như quản lý động cơ, điều khiển khí hậu và thông tin giải trí. 
+ + Miền giao diện (Interface Domain): Cung cấp các giao diện cho các miền chức năng, chẳng hạn như giao diện phần cứng, giao diện mạng và giao diện người dùng. 
+ + Miền phần cứng (Hardware Domain): Cung cấp các mô tả phần cứng cho các thiết bị ô tô, chẳng hạn như bộ vi xử lý, cảm biến và bộ truyền động. 
+ + Miền quản lý (Management Domain): Cung cấp các dịch vụ quản lý cho hệ thống ô tô, chẳng hạn như khởi động hệ thống, quản lý lỗi và bảo mật. 
+Các mô hình của Autosar schema mô tả các thành phần phần mềm và phần cứng của hệ thống ô tô. Các mô hình này được sử dụng để định nghĩa các thành phần phần mềm và phần cứng, cũng như các giao diện giữa các thành phần này. Các quy trình của Autosar schema cung cấp hướng dẫn cho việc phát triển và tích hợp phần mềm ô tô. Các quy trình này giúp đảm bảo rằng phần mềm ô tô được phát triển và tích hợp một cách nhất quán và hiệu quả. Các công cụ của Autosar schema giúp tự động hóa các nhiệm vụ phát triển phần mềm. Các công cụ này giúp giảm thời gian và chi phí phát triển phần mềm ô tô.
+5. Arxml ?
+File văn bản cấu hình thông số đầu vào theo yêu cầu hệ thống -> cung cấp thôg tin cấu trúc và giao diện của sw
+Chức năng chính của file ARXML là cung cấp một mô tả toàn diện về các thành phần phần mềm trong hệ thống. Mô tả này bao gồm các thông tin sau:
+Tên và định nghĩa của các thành phần phần mềm.
+Cổng và giao diện của các thành phần phần mềm.
+Hành vi bên trong của các thành phần phần mềm.
+Thông tin triển khai của các thành phần phần mềm.
++ gen arxml 2 cách : thủ công , dùng tool
+6. Khác nhau giữa arxml và xml?
+xml dùng nhiểu mục đích khác nhau
+5. Autosar tại sao cần có RTE, ko có RTE được không  ? 
+ASW vẫn có thể giao tiếp với BSW mà ko có RTE nhưng sẽ khó khăn
+  + Khó khăn trong việc quản lý giao tiếp
+  + Khó khăn trong việc tích hợp phần mềm
+  + Khó khăn trong việc nâng cấp phần mềm
