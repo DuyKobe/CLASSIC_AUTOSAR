@@ -1,0 +1,11 @@
+*SWC 
+Software compenent gồm 7 loại: 
+- application software component: các hàm như performing calculations, decision making, etc..
+- NV Block software component: lưu giữ các thông tin quan trong trong bộ nhớ , truy cập NVM manager. NVM là viết tắt của bộ nhớ không biến đổi có thể lưu giữ dữ liệu được lưu trữ sau khi tắt nguồn và khôi phục khi bật nguồn
+- Complex device driver: kích hoạt túi khí, kim phun nhiên liệu.
+- service component
+- Service proxy: Service đặc biệt được sử sụng từ ecu khác 
+- abstraction software component 
+- sensor actuator software componentL: interact với ecuabstraaction layer và interface giưa ác aplication component 
+- Parameter Software component : cung cấp hiệu chuẩn cho một dự án, chỉ có provider port ko có receiver port . ví dụ chứa thông số cường độ sáng để bật đèn tự động khi trời tối 
+- Composition software component:  cho thấy chi tiết các thành phần của swc và cấu hình connectors 

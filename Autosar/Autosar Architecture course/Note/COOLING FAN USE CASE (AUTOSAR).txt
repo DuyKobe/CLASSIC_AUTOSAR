@@ -1,0 +1,64 @@
+COOLING FAN USE CASE (AUTOSAR)
+ B1: Port Driver 
+ -Configure Pin: ADC Pin, DIO_Enable, DIO IN1, DIO IN2
+  + Port PinId
+  Port Driver:
+  typedef uint32 Port_PinType;
+  + PortPinDirection
+     Port Driver: 
+typedef enum
+{
+    PORT_PIN_DISABLED = 0,  /**< @brief No settings: the pin is not available. */ 
+    PORT_PIN_IN,            /**< @brief Sets port pin as input. */
+    PORT_PIN_OUT,            /**< @brief Sets port pin as output. */
+    PORT_PIN_HIGH_Z         /**< @brief Sets port pin as high-Z. */
+} Port_PinDirectionType; 
+
+FUNC(void, PORT_CODE) Port_SetPinDirection
+(
+    VAR(Port_PinType,           AUTOMATIC) Pin,
+    VAR(Port_PinDirectionType,  AUTOMATIC) Direction
+)
+  + PortPin InitialMode
+  typedef uint8 Port_PinModeType;
+  
+FUNC(void, PORT_CODE) Port_SetPinMode
+( 
+    VAR(Port_PinType,     AUTOMATIC) Pin,
+    VAR(Port_PinModeType, AUTOMATIC) Mode
+)
+ B2: DIO Driver
+ + Hàm Dio_ReadChannel
+  Cú pháp: Dio_LevelType Dio_ReadChannel(
+Dio_ChannelType ChannelId
+)
+  Hàm trong Dio.c
+  FUNC(Dio_LevelType, DIO_CODE) Dio_ReadChannel
+(
+    CONST(Dio_ChannelType, AUTOMATIC) ChannelId
+)
+ + Hàm Dio_WriteChannel
+   Cú pháp: void Dio_WriteChannel(
+Dio_ChannelType ChannelId,
+Dio_LevelType Level
+)
+  Hàm trong Dio.c
+  FUNC(void, DIO_CODE) Dio_WriteChannel
+(
+    CONST(Dio_ChannelType,  AUTOMATIC) ChannelId,
+    CONST(Dio_LevelType,    AUTOMATIC) Level
+)
+ B3: ADC Driver (https://github.com/Mohamed-Gebril00/Adc_Driver_AUTOSAR-4.3.1)
+  2 hàm quan trọng để trigger ADC: ADC_StartGroupConversion (trigger ADC) và ADC_ReadgGroup (đọc lại dữ liệu đã chuyển đổi)
+ + ADC_StartGroupConversion
+  Cú pháp: void Adc_StartGroupConversion(
+Adc_GroupType Group
+)
+ -> Asynchronous, reetrant
+    Asynchronous: Không có kết quả trả về, đặt trạng thái của nhóm thành ADC_BUSY ( ِADC_BUSY: The conversion of the specified group has been started and is still going on. - So far no result is available.*/),Không có vòng lặp chờ đợi để kiểm tra trạng thái conversion
+ + Hàm Adc_ReadGroup
+ Cú pháp Std_ReturnType Adc_ReadGroup(
+Adc_GroupType Group,
+Adc_ValueGroupType* DataBufferPtr
+)
+ 

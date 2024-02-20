@@ -1,0 +1,79 @@
+* ASW ARXML file: 
+ _ LÀ 1 SWC arxml nên có 2 phần chính  Port (P-Port -> SR or CS interface  và R-Port -> CS interface)
+  _ Internal Bahavior (Event & Runnable Entity)
+  _ <AR-PACKAGE>
+        <AR-PACKAGE>
+			<SHORT-NAME>SWComponent</SHORT-NAME>
+			<ELEMENTS>
+				<APPLICATION-SW-COMPONENT-TYPE>
+					<SHORT-NAME>TemControlSWC</SHORT-NAME>
+ + <PORTS> //Port (P-Port -> SR or CS interface  và R-Port -> CS interface): có 3 port (RP_Temperature, RP_StartMotor, RP_StopMotor)
+       <PORTS>
+						<PORTS>
+						<R-PORT-PROTOTYPE>
+							<SHORT-NAME>RP_Temperature</SHORT-NAME>
+							<REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Interfaces/I_Temperature</REQUIRED-INTERFACE-TREF>
+						</R-PORT-PROTOTYPE>
+-> Tương tự các 2 port còn lại
++ <INTERNAL-BEHAVIORS>: 
+   + <EVENT>
+       <TIMING-EVENT>
+									<SHORT-NAME>TE_10ms</SHORT-NAME>
+									<START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SWComponent/TemControlSWC/IB_SWC/TemperatureControl</START-ON-EVENT-REF>
+									<PERIOD>0.01</PERIOD>
+								</TIMING-EVENT>
+   + <RUNNABLES>
+         <RUNNABLE-ENTITY>
+			<SHORT-NAME>TemperatureControl</SHORT-NAME>
+			<DATA-RECEIVE-POINT-BY-ARGUMENTS> //thẻ xác định điểm nhận dữ liệu dc truyền qua như tham số 
+			<VARIABLE-ACCESS>
+			  <SHORT-NAME>VA_Temp</SHORT-NAME>
+			  <ACCESSED-VARIABLE>
+				<AUTOSAR-VARIABLE-IREF>
+						<PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SWComponent/TemControlSWC/RP_Temperature</PORT-PROTOTYPE-REF>
+						<TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Interfaces/I_Temperature/Temperature</TARGET-DATA-PROTOTYPE-REF>
+				</AUTOSAR-VARIABLE-IREF>
+		          </ACCESSED-VARIABLE>
+		       </VARIABLE-ACCESS>
+		       </DATA-RECEIVE-POINT-BY-ARGUMENTS>
+ 
+                       <SERVER-CALL-POINTS>
+										<SYNCHRONOUS-SERVER-CALL-POINT> //điểm gọi server
+											<SHORT-NAME>SC_StartMotor</SHORT-NAME>
+											<OPERATION-IREF> //Thông tin chi tiết thao tác gọi hàm server 
+												<CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SWComponent/TemControlSWC/RP_StartMotor</CONTEXT-R-PORT-REF> //đường dẫn đến reciever port
+												<TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Interfaces/I_StartMotor/StartMotor</TARGET-REQUIRED-OPERATION-REF> //đường  dẫn đến client server interface
+											</OPERATION-IREF>
+										</SYNCHRONOUS-SERVER-CALL-POINT>
+*ASW C file:
+/* Add RTE Application header */
+#include "Rte_TemControlSWC.h"
+
+
+void ApplTemperatureControl()
+{
+	
+	float Temperature;
+	
+	/* Read data from Ecu Abstraction through RTE */
+	Rte_Read_RP_Temperature_Temperature(&Temperature);
+	
+	/* Control Logic */
+	if(Temperature > 50 && Temperature < 75)
+	{
+		/* Start Cooling fan (LowSpeed) */
+		Rte_Call_RP_StartMotor_StartMotor(25);
+	}
+	else if(Temperature > 75)
+	{
+		/* start cooling fan (HighSpeed) */
+		Rte_Call_RP_StartMotor_StartMotor(100);
+	}
+	else if(Temperature < 50)
+	{
+		/* Stop the cooling fan */
+		Rte_Call_RP_StopMotor_StopMotor();
+	}
+	
+	
+}

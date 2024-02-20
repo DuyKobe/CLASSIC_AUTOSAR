@@ -1,0 +1,40 @@
+* Understanding cấu hình ÃML
+Cấu trúc nột file arxml
+- Đầu tiên file arxml có thuộc tính về autosar version and schema tương ứng
+ + Tất cả cấu hình được đóng gói package  <AR-PACKAGES>, có thể chứa bất kì số lượng gói  <AR-PACKAGES> bên trong
+   + <AR-PACKAGES> bên trong có short name : <AR-PACKAGE>
+			<SHORT-NAME>AUTOSAR_PlatformTypes</SHORT-NAME>
+* Tạo 1 SWC bao gồm file . c và .arxml
+ + phải có 1 file schema để edit file arxml
+* Tạo file VÀ setup interface.arxml: 
+   + không bắt buộc phải luôn có các giao diện trên một tệp riêng biệt. 
+   + Tất cả các cấu hình có thể được kết hợp với nhau trong Gói AR hoặc một ARXML duy nhất hoặc bạn có thể chia chúng thành bất kỳ số lượng ARXML nào.
+   + lấy file chứa data là Platform_type từ folder standard autosar : Modeling showcase->measurementcaibration-> introductory-> model->Platform_type
+   + Edit file xml bằng XMLSPy hoặc 
+*
+XMLSpy là một phần mềm phát triển XML và XSLT. Nó được phát triển bởi SyncroSoft và được sử dụng bởi các nhà phát triển phần mềm, kỹ sư hệ thống và nhà thiết kế XML.
+
+XMLSpy cung cấp một loạt các tính năng cho phép người dùng tạo, chỉnh sửa, kiểm tra và debug các file XML. Nó cũng hỗ trợ các ngôn ngữ XSLT, XPath và XQuery. 
+  + Import folder project
+  + Load autosar schema associate
+* Create interfaces in ARXML
+ + Copy cấu hình autosar và tạo tag closing </AUTOSAR>
+ + Về <SENDER-RECEIVER-INTERFACE>: 
+    + quan trong <SHORT-NAME> và <DATA-ELEMENTS>
+      + <DATA-ELEMENTS> thì có <VARIABLE-DATA-PROTOTYPE>
+        +<VARIABLE-DATA-PROTOTYPE> thì có <SHORT-NAME> và <IMPLEMENTATION-DATA-TYPE-REF>
+ + Về <SENDER-RECEIVER-INTERFACE>: 
+    + quan trong <SHORT-NAME> ,<OPERATIONS> -> <CLIENT-SERVER-OPERATION> và <POSSIBLE-ERRORS> -> <APPLICATION-ERROR>
+      + <CLIENT-SERVER-OPERATION> thì có tên hàm <SHORT-NAME> và tham số hàm <ARGUMENTS> và <POSSIBLE-ERROR-REFS>
+
+          +   <ARGUMENTS> có <ARGUMENT-DATA-PROTOTYPE>	  // thuộc tính data
+			     <SHORT-NAME>FanSpeed</SHORT-NAME> //tên data 
+			     <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_PlatformTypes/ImplementationDataTypes/uint8</TYPE-TREF> //tham                       chiếu đến kiểu dữ liệu
+ 			     <DIRECTION>IN</DIRECTION> // input hay output hay input và output
+          + <POSSIBLE-ERROR-REFS>  có <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Interfaces/I_StartMotor/E_OK</POSSIBLE-ERROR-REF>
+								<POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Interfaces/I_StartMotor/E_NOT_OK</POSSIBLE-ERROR-REF>
+
+    + <POSSIBLE-ERROR>  có <SHORT-NAME>E_OK</SHORT-NAME>
+			   <ERROR-CODE>0</ERROR-CODE>
+                        và <SHORT-NAME>E_NOT_OK</SHORT-NAME>
+			   <ERROR-CODE>1</ERROR-CODE>

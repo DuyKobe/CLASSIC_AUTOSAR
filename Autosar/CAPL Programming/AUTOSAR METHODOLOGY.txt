@@ -1,0 +1,9 @@
+AUTOSAR METHODOLOGY
+* Có 4 quá trình: 
+ + Configure system 
+ + Extract ECU information 
+ + Configure ECU
+ + final Rte layer
+*VFB (Virtual Function Bus) là tổng hợp của tất cả các cơ chế và giao diện truyền thông với phần mềm cơ bản do Autosar Autosar cung cấp ở mức độ trừu tượng.
+- Từ cấp độ system, Các SWC ban đầu được giao tiếp interface thông qua  VFB -> map các SWC vào từng ECU -> tạo ECU Extract cho mỗi ECU (dùng tool)-> với cònigurations và ECU Extracts, RTE được tạo ra bằng tool 
+_ trong giai đoạn đầu phát triển SW chỉ dùng VFB ko quan tấm communication của ECU

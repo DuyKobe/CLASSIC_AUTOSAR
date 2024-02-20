@@ -1,0 +1,62 @@
+                CONTENT
++ CAN
++ CAN DRIVER MODULE
++ CAN IF MODULE
++ CANTP MODULE 
++ PduR Module
++ COM Module
+           COM STACK INTRODUCE
+* COM STACK gồm 3 phần: 
+ A: transmission/reception
+ B: State Management
+ C: Network management
+*  A: transmission/reception
+ + Bus Driver: gồm Can driver (handle can controller hardware và transceiver driver (handle transceiver hardware)
+ + BUS IF: module interface cung cấp tính độc lập về phần cứng cho các lớp trên
+ + BUS TP: truyền dữ liệu hơn 8byte. 
+ + PDUR: Nó cung cấp đường dẫn định tuyến cho Pdus bằng cách duy trì các bảng chứa các mô-đun nguồn và đích PDU.
+ + COM: chịu trách nhiệm giải nén và đóng gói Pdus qua lại và gửi tín hiệu lên application sw thông qua  RTE
+*Tổng quan COM-STACK 
+- data truyền từ can driver lên Autosar Com rồi unpack và giải nèn gửi lên ắ qua RTE
+- Tín hiệu gửi từ ASW qua RTE đến autỏa com. Sau đó tin hiệu sẽ dc pack đên IPU và được gửi đến PDU router. tín hiều gưi tieeps đến CAN TP hoặc đến thẳng CAN IF
+- Dựa vào size của PDU, từ CAN IF data dến can driver sau cđó chyển lên bus
+- CAn TP có thể chia nhỏ big frame thành các frame nhỏ và gửi đến PDU router 
+- PDR module chứa 2 phần: Routing table và routing engine. 
+  + Routing table là code cấu hình static chứa source và destiantion PDUS, sẽ được sử dụng cho công cụ định tuyến để xác định các API nguồn và đích, sẽ được sử dụng để gọi việc xử lý tiếp theo của tin nhắn.
+  -> CHỨC NĂNG  chính của PDUR là định tuyến các tin nhắn đến hoặc đi đến mô-đun phía trên hay phía dưới.
+* PDU Flow
+- Qua kiến trúc phân lớp
+- PDU bao gồm 2 phần : PCI và SDU
+ + SDU: (Service data unit) là data thực, đi qua từ lớp trên. khi request data tranmission, dữ liệu dc truyền từ lớp trên xuoonge ong lop dưới  
+ + PCI: (Protocol control information)
+    thông tin này cần được chuyển cùng với SDU từ một phiên bản của lớp giao thức cụ thể sang một phiên bản khác. PCI ddc thêm bởi lớp protocol trên phía gửi và đc giảm ở phía nhận 
+-> PDU (Protocol data unit)
+hức năng của PCI:
+
+Chứa thông tin điều khiển cho việc truyền tải PDU:
+
+Loại PDU: Xác định loại PDU (ví dụ: dữ liệu, điều khiển, v.v.)
+ID nguồn: Xác định node nguồn gửi PDU
+ID đích: Xác định node đích nhận PDU
+Độ dài SDU: Xác định độ dài dữ liệu dịch vụ
+Checksum: Kiểm tra tính toàn vẹn của PDU
+Điều khiển việc định tuyến PDU trong mạng CAN:
+
+Chỉ ra bus CAN cụ thể để truyền PDU
+Xác định mức độ ưu tiên của PDU
+Chức năng của SDU:
+
+Chứa dữ liệu thực tế được truyền tải giữa các node:
+Dữ liệu cảm biến
+Lệnh điều khiển
+Dữ liệu chẩn đoán
+*Frame/PDU/Signal
+ + Signal: là  thông tin nguyên tử nhỏ nhất, liên quan tới hàm/source/address được nhóm lại để tananj dùng 8 byte có sắn trong frame -> call là Signal Group, PDUs thuộc cacss hàm/cluster có thể dc nhonms lại gọi là PDU Group
++ PDU gồm 2 phân SDU (data thực) và PCI (thông tin module or protocol)
++ Vì vậy PCI này là cần thiết cho lớp trên hoặc lớp dưới. Vì vậy, PCI này, nó có thể là độ dài dữ liệu của bạn hoặc có thể là ID PDU hoặc ID handle.
+-> PCi thêm vào bên sender và loại bỏ bên reciver.
++ SDU của PDU có thể bao gồm 1 signal group or single signal. 1 frame có thể chứa single PDU or PDU group và độ dài chỉ là 8 byte 
+- Name convention của PDU và SDU  theo bảng bus prefix và layer prefix
+
+
+

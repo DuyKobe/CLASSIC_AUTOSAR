@@ -1,0 +1,33 @@
+COMPOSITION AND CONNECTORS 
+* Composition bao gồm các components và các connectors
+* Connector có 3 loại: 
+ + Assembly connector: kết nối các port trong cùng composition(p->r)  
+ + Delegation connector: kết nối các component bên ngoài composition, port cùng loại với port trên component (p->p, r->r)
+ + Pass through connector 
+* Runnable Entitle là đoạn code nhỏ nhất được cung cấp bới component.
+Các hàm runnable phải được define bên trong SWC(ko có trong Parameter SWC và Composition SWC
+- Runnable Entitle với event được schedule bởi OS
+- OS sẽ sử dụng các symbol để gọi hàm
+ VD: <SYMBOL>Sum</SYMBOL> -> tên hàm phải giống với Hàm C
+- Runnable Configuration phải chứa thông t in về interace và cổng 
+*Event
+- Event là cấu hình bổ sung cho Runnable nhằm chỉ định hệ điều hành về cách gọi hoặc lên lịch cho Runnable. Runnable trigger khi có event
+- Runnable dc map đến RTE map, OS và RTE đảm bảo hàm runnable đúng thời điểm
+- General Event: 
+ + Init Event
+ + Timing Event
+ + External Trigger occured Event
+ + internal trigger Occurred Event
+ + Background Event: OS gọi runnable khi chip ko làm việc
+- Client Server Events: 
+ + Operation Invoked Events: được dùng bên server của giao tiếp server client, runnable đc gọi khi máy khách yêu cầu thực thi máy chủ thông qua lệnh gọi Đồng bộ hoặc không đồng bộ.
+ + The asynchronous server result event: dược đưa ra khi cuộc gọi máy chủ không đồng bộ kết thúc.
+- Data Events: 
+ + Data Write complete Event: call runnable khi data dc gửi trên provider port.
+ + Data Send complete Event: call runnable khi data dc gửi trên provider port.
+ + Data Receive Event:  call runnable khi data dc nhận trên receiver port.
+ + Data Receive error event: call runnable trong quá trình rêcieve có lỗi.
+- Mode Event:
+ + Mode switch Event
+ + Mode mangager error Event 
+ + Mode Switch Ack Event

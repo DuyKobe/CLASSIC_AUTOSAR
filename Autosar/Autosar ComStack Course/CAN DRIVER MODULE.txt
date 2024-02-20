@@ -1,0 +1,55 @@
+                     CAN DRIVER MODULE
+*Introduction 
+ + Can driver truy cập trực tiếp đến vdk và cung cấp API độc lập cho lớp trên là CANIF
+ + Can driver cung cấp các services cho hàm callback truyền nhận của module CANIF cho việc thông báo event, độc lập phần cứng.
+ + Can driver cung cấp các services để điều khiển behavior và state của CAN controller cái thuộc về cùng hardware unit
+ + CAN controller đc ddieu khhieenr bởi can modukle miễn sao chúng cùng hardware unit.
+ + 1 Can module có thể truy cập nhìu CAN CONTROLLER khác nhau miễn sao nó cùng phần cứng.
+*CAN Hardware Unit 
+- CAN Hardware Unitcó thể kết hợp một hoặc một số can controllers có thể được đặt trên chip hoặc các thiết bị độc lập bên ngoài cùng loại với các đối tượng phần cứng chung hoặc riêng biệt.CAn Hardware Uni đại điện bởi CAN Driver. 
+ + Message Object mailbox: là bộ đến Rx và Tx
+* Các thuật ngữ quan trong:
+- CAn controller : vidk có tất cả các hàm của can, phục vụ chính xác physical channel 
+- CAN L-PDU: là datalink layer protocol data unit bao gồm ID, dala length và datat (SDU)
+- CAN L-SDU: là datalink layer service  data unit. data vận chuyển bên trong L-PDU.
+- Hardware object: define như PDU buffer của CAN RAmcủa CAN hardware unit.
+- The hardware recieve handle(HRH): đc define và provide bởi can driverm MỖI HRH dai dien cho 1 hardware obeject
+- The hardware transmit handle(HRH): đc define và provide bởi can driverm MỖI HRH dai dien cho 1 hay nhìu hardware obeject dc cấu hình bởi hardware transmit pool.
+- Inner prioprity intersion: low priority message dc store trong buffer ngăn sự chuyền cho high priority message khi bus chưa clear.
+- L-PDU handle: 
+- Out rioprity intersion:
+- Physic channel: đại diện cho interface from CAN Controller đến CAN network
+- SFR: Special function register. Hardware register điểuu khiển controller behavior 
+- Priority: priority of L-PDU handle dc đaiạ dien bởi CAN Identifier . giá trị ưu tiên càng thấp độ ưu tiên càng cao 
+* CAN Driver State MAChine 
+Có 2 giai đoạn CAN unintilialize -> CAN ready
+* CAN control state
+- có nhiều complex state machine, 4 state : UNINIT, STOPPED, STARTED, SLEEP. 
+- can module offer các services: 
+  + CAN_Init 
+  + CAN_Setbaudrate
+  + CAN_SetControllerMode
+- Các service perform register to change can controller state
+- 2 kahr năng trigger state change bổi external event 
+  + Bus-off event 
+  + HW wakup event 
+ -> các event có thể do interrupt or polling 
+- Can module set thanh ghi yêu cầu hàn vi thông  báo đen CAn if with gọi hàm tương ứng . sw state sẽ thay đổi bên trong hàm callback.
+ + CAn controller state UNiNIT
+ + CAn controller Stopped 
+ + CAN Controller Started 
+ + CAN controller state sleep
+* Can controller state transitions
+  + State transition caused by function CAN_Init: Can controller state from uninitialized to stoped. (nếu initial state chưa khởi tạo -> lỗi dc report)
+  + State transition caused by function CAN_Setbaudrate: stopped -> stopped , sleep -> sleep, started -> started 
+  + State transition caused by function CAN_SetControllerMode: Stopped -> Started, Started -> Stopped, SLeep-> Stopped.
+  + State transition caused by Hardware Event: 
+     - State transition caused by Hardware Wakeup
+     - State transition caused by Bus-Off
+     - State transition caused by function CAN-DeInit
+  + CAN Initialization 
+    EcuM_Init -> CAN_Init  -> static valuable,  common setting for complete CAN HW unit , specify each controller 
+  
+
+
+      

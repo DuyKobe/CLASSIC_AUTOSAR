@@ -1,0 +1,25 @@
+* Autosar RTE Layer
+- RTE cũng có thể đảm bảo tính nhất quán của thông báo trong khi truyền giao diện qua các ứng dụng, bất kể chúng là mã nào và mức độ ưu tiên mà giao diện được truy cập.
+- RTE lên lich cho runnables
+- RTE cũng có thể đảm bảo tính nhất quán của thông báo trong khi truyền giao diện qua các ứng dụng, bất kể chúng là mã nào và mức độ ưu tiên mà giao diện được truy cập.
+- Autosar RTE API: 
+Autosar RTE API là một giao diện lập trình ứng dụng (API) cung cấp cho các nhà phát triển khả năng tương tác với môi trường runtime của AUTOSAR (RTE)
+- Tra RTE API trên Autosar_SWS_RTE
+- Code file C dựa vào API reference 
+* RTE API
+ - Sender Receiver Interface: 
+  trong file c : 
+   Bên gửi: Rte_Write_namePort_Namedataprototype(data)
+   Bên Nhận: Rte_Read_namePort_Namedataprototype(&data) 
+ - Client Server Interface
+  trong file C:
+  Bên Client: RTE_Call_nameproviderport_Namedataprototype(data(IN|IN/OUT|OUT)
+ - Communication
+   RTE hoạt động như một lớp trừu tượng và đảm nhiệm việc sao chép thông báo giữa các phần mềm
+  - Hàm write /read được define ở RTE -> trong ASWC sẽ sử dụng call từ RTE 
+ -> tại cao ko copy trực tiếp từ module này qua module khác mà phải qua RTE -> cách trên không thể quản lý được hàng ngàn SWC -> khi phát triển bất kí swc sẽ ko ảnh hưởng tới các SWC khác do đã được trừu tượng -> khi thay đổi cấu hình ASWC, RTE sẽ tự điều chỉnh theo cần thiết (những phần khác giữ nguyên)
+*RTE Scheduling
+*Autosar RTE Generator 
+  RTE layer được tạo từ tool cấu hình 
+ - Input của generator là tất cả các file arxml -> sinh ra các API
+ _ Output là các file c  (Rte.c , Rte_lib.c  ...) và file . h của các SWC (RTE_Read, RTE_Write...) , các file support process 

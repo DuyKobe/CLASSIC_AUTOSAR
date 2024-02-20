@@ -1,0 +1,16 @@
+* UDS protocol (Unified Diagnostics Service) : giao thức dùng để chuẩn đoán lỗi  hay còn gọi là offboard protocol, UDS được sử dụng cùng với CAN để cập nhật phần mềm ECU
+ define 5 loại: 
+    + services
+    + format request message 
+    + format responce message
+    + timing paramemter
+    + service handling bởi tester và ecu
+* DCM nằm trong communication service layer 
+* Cấu trúc CAN stack: 
+ + Can driver đại diện cho physic layer
+ + Can IF: 
+* DSD Introduction
+ DCM: Dignostic communication manager bao gồm 
+ + DSP: diagnotic service processor
+ + DSD: diagnotic service dispatcher
+ + DSL: 

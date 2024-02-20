@@ -1,0 +1,13 @@
+STEP TO LEARN CAPL PROGRAMMING
+* Các bước học: 
+    Operation của CANOE or CANALYZER -> Add program block -> tạo và sử dụng dữ liệu tin nhắn -> tạo chương trình CAPL
+*CAPL: dựa trên C
+- SỬ DỤNG TRONG mt kernel và ânlyzer
+- giúp giám sát lưu lượng truy cập của mô-đun thực và tổng hợp các mô-đun khác có trong mạng.
+- dựa trên các khai báo chẵn và sau đó là câu lệnh phân nhánh vòng lặp theo nhãn.
+- Mỗi chương trình capl độc lập là 1 task
+- Mỗi task tự open và end. 
+- Mỗi task có nhiều timer -> khởi tạo dc timer và use
+
+_ Mỗi node chương trình đc thiết lập mô phỏng đều độc lập nhưng không thực thi độc lập -> ko thể áp dụng cho test script
+- Các test script hoặc script if sẽ thực thi tuần tự 

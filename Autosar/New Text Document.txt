@@ -1,0 +1,15 @@
+
+Giao thức CAN nằm trong phần AUTOSAR-COM stack của kiến trúc phần mềm ô tô AUTOSAR.
+
+AUTOSAR-COM stack là một kiến trúc phần mềm tiêu chuẩn cho việc truyền thông dữ liệu giữa các ECU trong ô tô. Kiến trúc này bao gồm 5 lớp, từ lớp 1 (Lớp vật lý) đến lớp 5 (Lớp ứng dụng).
+
+Giao thức CAN nằm ở lớp 2 (Lớp liên kết dữ liệu) của AUTOSAR-COM stack. Lớp này chịu trách nhiệm định dạng khung dữ liệu, kiểm soát lỗi, và quản lý tiếp cận đường truyền.
+
+Trong AUTOSAR-COM stack, giao thức CAN được triển khai dưới dạng một mô-đun phần mềm có tên là CAN Driver. Mô-đun này cung cấp các dịch vụ cần thiết để truyền dữ liệu CAN giữa các ECU.
+
+Các dịch vụ này bao gồm:
+
+Tạo và gửi khung dữ liệu CAN
+Nhận và giải mã khung dữ liệu CAN
+Quản lý lỗi CAN
+CAN Driver được triển khai dưới dạng một thư viện phần mềm. Các nhà sản xuất ECU có thể sử dụng thư viện này để triển khai giao thức CAN trong phần mềm ECU của họ.

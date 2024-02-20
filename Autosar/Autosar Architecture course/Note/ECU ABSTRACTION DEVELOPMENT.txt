@@ -1,0 +1,85 @@
+       ECU ABSTRACTION DEVELOPMENT
+* ECU Abstraction ARXML 
+  _ LÀ 1 SWC arxml nên có 2 phần chính  Port ( có 3 port và 2 client-serve(synchronous) và 1 sender-reciever )
+  _ Internal Bahavior (Event & Runnable Entity)
+  _ <AR-PACKAGE>
+			<SHORT-NAME>SWComponent</SHORT-NAME>
+			<ELEMENTS>
+				<ECU-ABSTRACTION-SW-COMPONENT-TYPE>
+                                  <SHORT-NAME>
+                                  <PORTS>...</PORTS>
+                                  <INTERNAL-BEHAVIORS>...</INTERNAL-BEHAVIORS>
+				  
+    + <PORTS> //Port (P-Port -> SR or CS interface  và R-Port -> CS interface): có 3 port (PP_Temperature, PP_StartMotor, PP_StopMotor)
+						<P-PORT-PROTOTYPE>
+							<SHORT-NAME>PP_Temperature</SHORT-NAME>
+							<PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Interfaces/I_Temperature</PROVIDED-INTERFACE-TREF>
+						</P-PORT-PROTOTYPE>
+						<P-PORT-PROTOTYPE>
+							<SHORT-NAME>PP_StartMotor</SHORT-NAME>
+							<PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Interfaces/I_StartMotor</PROVIDED-INTERFACE-TREF>
+						</P-PORT-PROTOTYPE>
+						<P-PORT-PROTOTYPE>
+							<SHORT-NAME>PP_StopMotor</SHORT-NAME>
+							<PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Interfaces/I_StopMotor</PROVIDED-INTERFACE-TREF>
+						</P-PORT-PROTOTYPE>
+					</PORTS>
+   + <INTERNAL-BEHAVIORS>: 
+         + <EVENTS>  //define sau khi đã define tất cả cấc runnable entity để đảm bảo các sự kiện có thể tham chiếu đến các thực thể đó
+								<TIMING-EVENT>
+									<SHORT-NAME>TE_10ms</SHORT-NAME>
+									<START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SWComponent/TempHBridgeSWC/IB_Swc/ReadTemperature</START-ON-EVENT-REF> // xác định runnable entity sẽ được kích hoạt khi xảy ra event
+									<PERIOD>0.01</PERIOD> // Thời gian giữa các lần kích hoạt 
+								</TIMING-EVENT>
+								<OPERATION-INVOKED-EVENT>
+									<SHORT-NAME>OIE_StartMotor</SHORT-NAME>
+									<START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SWComponent/TempHBridgeSWC/IB_Swc/StartMotor</START-ON-EVENT-REF>
+									<OPERATION-IREF>
+										<CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/SWComponent/TempHBridgeSWC/PP_StartMotor</CONTEXT-P-PORT-REF>
+										<TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Interfaces/I_StartMotor/StartMotor</TARGET-PROVIDED-OPERATION-REF>
+									</OPERATION-IREF>
+   -> <TIMING-EVENT> luôn được kích hoạt dựa trên khoảng thời gian định kỳ , <OPERATION-INVOKED-EVENT> được kích hoạt khi một thao tác cụ thể được gọi
+         + <RUNNABLES>
+								<RUNNABLE-ENTITY>
+									<SHORT-NAME>ReadTemperature</SHORT-NAME>
+									<MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL> //Khoảng thời gian tối thiểu giữa hai lần kích hoạt
+									<CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY> // không thực thi đồng thời
+									<DATA-SEND-POINTS> // thẻ chứa điểm gửi dữ liệu
+										<VARIABLE-ACCESS>
+											<SHORT-NAME>VA_Temp</SHORT-NAME>
+											<ACCESSED-VARIABLE>
+												<AUTOSAR-VARIABLE-IREF> thẻ tham chiếu đến biến truy cập
+													<PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/SWComponent/TempHBridgeSWC/PP_Temperature</PORT-PROTOTYPE-REF> // dẫn đến địa chỉ port 
+													<TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Interfaces/I_Temperature/Temperature</TARGET-DATA-PROTOTYPE-REF> //dẫn đến define của kiểu dữ liệu
+												</AUTOSAR-VARIABLE-IREF>
+											</ACCESSED-VARIABLE>
+										</VARIABLE-ACCESS>
+									</DATA-SEND-POINTS>
+									<SYMBOL>ReadTemperature_Function</SYMBOL>  //Tên biểu tượng của hàm C
+								</RUNNABLE-ENTITY>
+   -> Tóm lại: Đoạn mã này định nghĩa một thực thể thực thi có tên "ReadTemperature" có chức năng đọc nhiệt độ từ cổng "PP_Temperature" của thành phần phần mềm "TempHBridgeSWC". Giá trị đọc được sẽ được lưu trữ trong biến "VA_Temp" với kiểu dữ liệu được định nghĩa tại "/Interfaces/I_Temperature/Temperature". Hàm thực hiện việc đọc nhiệt độ có tên là "ReadTemperature_Function".
+
+* ECU ABstraction C file 
+ - Code trên RTE API reference 
+ - Để link file C với file arxml cần include an RTE headder: 
+   #include "Rte_<SWCName>.h"  với SWCName là Short name trong file arxml
+ - /* Include RTE Application header */
+#include "Rte_TempHBridgeSWC.h"
+ - Hàm dọc nhiệt độ nước làm mát : 
+   /* Code for Runnable - Read Temperature */
+void ReadTemperature_Function()
+{
+/* Trigger ADC Conversion and read results */
+/* Convert ADC raw vaule to Voltage */
+/* 10bit ADC with voltage ref-2.5V */
+	/* Convert voltage to temperature */
+	/* Resp. sensor actuator SWC on Application layer */
+	/* Sensor -> for 35deg output voltage is 0.35V */
+
+	/* Write temperature results to RTE */
+}
+- HÀm startmoptor
+- Hàm stopmotor 
+
+                               
+  

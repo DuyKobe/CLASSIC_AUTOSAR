@@ -1,0 +1,31 @@
+                                                          COMPOSITION 
+COMPOSITION AND CONNECTORS 
+* Composition bao gồm các components và các connectors
+* Connector có 3 loại: 
+ + Assembly connector: kết nối các port trong cùng composition(p->r)  
+ + Delegation connector: kết nối các component bên ngoài composition, port cùng loại với port trên component (p->p, r->r)
+ + Pass through connector 
+<AR-PACKAGE>
+			<SHORT-NAME>Composition</SHORT-NAME>
+			<ELEMENTS>
+				<COMPOSITION-SW-COMPONENT-TYPE>
+                                   <SHORT-NAME>TempControlComposition</SHORT-NAME>
+				   <COMPONENTS>
+				      <SW-COMPONENT-PROTOTYPE>
+                                             <SHORT-NAME>EcuAbstComp</SHORT-NAME>
+					     <TYPE-TREF..>   </TYPE-TREF>
+                                      </SW-COMPONENT-PROTOTYPE>
+                                   </COMPONENTS>
+			           <CONNECTORS> 
+                                   <ASSEMBLY-SW-CONNECTOR>
+							<SHORT-NAME>ASC_Temperature</SHORT-NAME>
+							<PROVIDER-IREF>
+								<CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/Composition/TempControlComposition/EcuAbstComp</CONTEXT-COMPONENT-REF>
+								<TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/SWComponent/TempHBridgeSWC/PP_Temperature</TARGET-P-PORT-REF>
+							</PROVIDER-IREF>
+							<REQUESTER-IREF>
+								<CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/Composition/TempControlComposition/ApplicationSWC</CONTEXT-COMPONENT-REF>
+								<TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/SWComponent/TemControlSWC/RP_Temperature</TARGET-R-PORT-REF>
+							</REQUESTER-IREF>
+-> Mội composition có các component (gồm  tên và đường dẫn ) và các connector (các kiểu interface đều define như nhau gồm tên và duongwg dẫn P-Port và R-Port.
+

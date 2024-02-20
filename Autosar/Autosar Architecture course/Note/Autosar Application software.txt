@@ -1,0 +1,11 @@
+Autosar Application software
++ lớp Application độc lập với phần cứng
+  - Application software layer (ASW) là tầng cao nhất trong kiến trúc AUTOSAR. Nó chứa các thành phần phần mềm ứng dụng (application software components) cung cấp chức năng cho hệ thống ô tô.
+  - ví dụ: điều khiển động cơ, điều hòa không khí, và hệ thống thông tin giải trí.
++ ASWC bao gồm C file và Arxml file
++ Arxml File: File văn bản cấu hình thông số đầu vào theo yêu cầu hệ thống -> cung cấp thôg tin cấu trúc và giao diện của sw
+Chức năng chính của file ARXML là cung cấp một mô tả toàn diện về các thành phần phần mềm trong hệ thống. Mô tả này bao gồm các thông tin sau:
+  - definee Swc typte
+  - có 3 khối: Ports (1 loại port tương ứng chỉ 1 port interface), Internal Behavior (đặc tính quan trongjg, event và runnable được cáu hình bêntrong), SWC implementation(property: vendor, resourece consumption)
+ + Để link file C với file arxml cần include an RTE headder: 
+   #include "Rte_<SWCName>.h"
